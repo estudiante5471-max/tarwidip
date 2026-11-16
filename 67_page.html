@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TarwiDip | Nutrición y Sabor en cada bocado</title>
+    <!-- FontAwesome para íconos de redes sociales -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variables de colores basados en la marca TarwiDip */
+        :root {
+            --azul-marino: #0a2656;
+            --crema-tarwi: #fcebc4;
+            --naranja-acento: #e65100;
+            --blanco: #ffffff;
+            --texto-oscuro: #333333;
+            --gris-claro: #f5f5f5;
+        }
+
+        /* Estilos Globales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background-color: var(--blanco);
+            color: var(--texto-oscuro);
+            line-height: 1.6;
+        }
+        a { text-decoration: none; }
+        
+        /* Encabezado / Head */
+        header {
+            background-color: var(--blanco);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-container img {
+            height: 60px;
+            border-radius: 10px;
+        }
+        .logo-text {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--azul-marino);
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        nav ul li a {
+            color: var(--azul-marino);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: var(--naranja-acento);
+        }
+        .cta-btn-small {
+            background-color: var(--naranja-acento);
+            color: var(--blanco);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        /* Hero Section (Propuesta de Valor) */
+        .hero {
+            background-color: var(--crema-tarwi);
+            padding: 60px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        .hero-content {
+            flex: 1;
+        }
+        .hero-content h1 {
+            font-size: 3rem;
+            color: var(--azul-marino);
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--texto-oscuro);
+        }
+        .cta-btn-large {
+            display: inline-block;
+            background-color: var(--azul-marino);
+            color: var(--blanco);
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 30px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .cta-btn-large:hover {
+            background-color: var(--naranja-acento);
+            transform: translateY(-3px);
+        }
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        /* Sección Productos */
+        .productos {
+            padding: 80px 5%;
+            text-align: center;
+            background-color: var(--blanco);
+        }
+        .productos h2 {
+            font-size: 2.5rem;
+            color: var(--azul-marino);
+            margin-bottom: 50px;
+        }
+        .grid-productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        .tarjeta-producto {
+            background-color: var(--gris-claro);
+            border-radius: 20px;
+            padding: 30px;
+            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .tarjeta-producto:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        .tarjeta-producto img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        .tarjeta-producto h3 {
+            font-size: 1.5rem;
+            color: var(--azul-marino);
+            margin-bottom: 10px;
+        }
+        .precio {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--naranja-acento);
+            margin-bottom: 20px;
+        }
+        .btn-comprar {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: var(--azul-marino);
+            color: var(--blanco);
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-comprar:hover {
+            background-color: var(--naranja-acento);
+        }
+
+        /* Sección Contacto */
+        .contacto-seccion {
+            background-color: var(--crema-tarwi);
+            padding: 80px 5%;
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+        .contacto-info {
+            flex: 1;
+        }
+        .contacto-info h2 {
+            font-size: 2.5rem;
+            color: var(--azul-marino);
+            margin-bottom: 20px;
+        }
+        .contacto-formulario {
+            flex: 1;
+            background: var(--blanco);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+        .form-group textarea {
+            resize: none;
+            height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--azul-marino);
+            color: var(--blanco);
+            padding: 40px 5%;
+            text-align: center;
+        }
+        .redes-sociales {
+            margin-bottom: 20px;
+        }
+        .redes-sociales a {
+            color: var(--blanco);
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        .redes-sociales a:hover {
+            color: var(--crema-tarwi);
+        }
+        .contacto-directo {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        .contacto-directo i {
+            margin-right: 10px;
+            color: var(--crema-tarwi);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero, .contacto-seccion { flex-direction: column; text-align: center; }
+            nav ul { display: none; } /* Ocultar menú en móvil para simplificar */
+            .hero-content h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABECERA -->
+    <header>
+        <div class="logo-container">
+            <img src="logo TarwiDip.jpg" alt="Logo TarwiDip">
+            <span class="logo-text">TarwiDip</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+        <a href="#contacto" class="cta-btn-small">¡Pruébalo hoy!</a>
+    </header>
+
+    <!-- CUERPO PRINCIPAL -->
+    <main>
+        <!-- Sección Hero (Propuesta de Valor) -->
+        <section id="inicio" class="hero">
+            <div class="hero-content">
+                <h1>El dip nutritivo que revolucionará tus snacks</h1>
+                <p>Descubre <strong>TarwiDip</strong>, la crema deliciosa, 100% natural y alta en proteínas hecha a base de tarwi andino. Ideal para dipear, acompañar tus comidas o compartir con amigos sin culpas.</p>
+                <a href="#productos" class="cta-btn-large">Ver Sabores</a>
+            </div>
+            <div class="hero-image">
+                <img src="Generate a new image matching the description below._Use the attached image only as inspiration for the artistic style._Invent a fresh composition rather than reproducing the reference's layout._Choose an imaginativ.jpg" alt="Familia de productos TarwiDip">
+            </div>
+        </section>
+
+        <!-- Sección de Productos -->
+        <section id="productos" class="productos">
+            <h2>Nuestros Sabores Irresistibles</h2>
+            <div class="grid-productos">
+                
+                <!-- Producto 1 -->
+                <div class="tarjeta-producto">
+                    <img src="Generate a new image matching the description below._Use the attached image only as inspiration for the artistic style._Invent a fresh composition rather than reproducing the reference's layout._Choose an imagin (3).jpg" alt="TarwiDip Sabor Clásico">
+                    <h3>Sabor Clásico</h3>
+                    <p>La receta original con el toque perfecto de especias. Cremoso y versátil para cualquier piqueo.</p>
+                    <div class="precio">S/ 8.50</div>
+                    <button class="btn-comprar">Agregar al pedido</button>
+                </div>
+
+                <!-- Producto 2 -->
+                <div class="tarjeta-producto">
+                    <img src="Generate a new image matching the description below._Use the attached image only as inspiration for the artistic style._Invent a fresh composition rather than reproducing the reference's layout._Choose an imagin (4).jpg" alt="TarwiDip Sabor Pollo">
+                    <h3>Sabor Pollo</h3>
+                    <p>Todo el valor nutricional del tarwi con un riquísimo sabor a pollo. Ideal para acompañar tus tostadas.</p>
+                    <div class="precio">S/ 9.90</div>
+                    <button class="btn-comprar">Agregar al pedido</button>
+                </div>
+
+                <!-- Producto 3 -->
+                <div class="tarjeta-producto">
+                    <img src="Generate a new image matching the description below._Use the attached image only as inspiration for the artistic style._Invent a fresh composition rather than reproducing the reference's layout._Choose an imagin (1).jpg" alt="TarwiDip Sabor Carne">
+                    <h3>Sabor Carne</h3>
+                    <p>Un sabor intenso y ahumado. Perfecto para los amantes de las parrillas y los snacks con carácter.</p>
+                    <div class="precio">S/ 9.90</div>
+                    <button class="btn-comprar">Agregar al pedido</button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Sección de Contacto y Llamada a la Acción -->
+        <section id="contacto" class="contacto-seccion">
+            <div class="contacto-info">
+                <h2>¿Listo para probar el mejor dip?</h2>
+                <p>Haz tu pedido ahora mismo, pregúntanos por ventas al por mayor o simplemente cuéntanos qué te pareció TarwiDip. ¡Estamos listos para atenderte!</p>
+                <br>
+                <div class="contacto-directo">
+                    <p><i class="fab fa-whatsapp"></i> +51 987 654 321</p>
+                </div>
+            </div>
+            <div class="contacto-formulario">
+                <form onsubmit="event.preventDefault(); alert('¡Gracias por tu mensaje! Te contactaremos pronto.');">
+                    <div class="form-group">
+                        <input type="text" placeholder="Tu Nombre Completo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Tu Correo Electrónico" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="¿En qué te podemos ayudar? (Ej: Quiero pedir 3 TarwiDip Clásico...)" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-comprar" style="background-color: var(--naranja-acento);">Enviar Mensaje</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- PIE DE PÁGINA (Footer) -->
+    <footer>
+        <div class="redes-sociales">
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
+        <p>Síguenos en nuestras redes sociales para recetas, sorteos y novedades.</p>
+        <br>
+        <p>&copy; 2026 TarwiDi / Uriel Martín Pastor Quispe. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
